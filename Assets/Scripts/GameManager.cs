@@ -71,6 +71,19 @@ public class GameManager : MonoBehaviour
     AtualizarUI();
 }
 
+public void CobrarImpostos()
+{
+    dinheiro += 300;
+
+    felicidade -= 5;
+
+    InforText.text = "Os impostos foram arrecadados.";
+
+    VerificarLimites();
+
+    AtualizarUI();
+}
+
     public void InvestirSeguranca()
 {
     if (dinheiro >= 250)
