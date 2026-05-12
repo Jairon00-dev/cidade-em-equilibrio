@@ -5,10 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public float dinheiro = 1000f;
     public float felicidade = 50f;
+    public int populacao = 1000;
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI HappyText;
     public TextMeshProUGUI InforText;
+    public TextMeshProUGUI PopulationText;
 
     void Start()
     {
@@ -55,5 +57,6 @@ public class GameManager : MonoBehaviour
     {
         moneyText.text = "Dinheiro: R$ " + dinheiro;
         HappyText.text = "Felicidade: " + felicidade + "%";
+        PopulationText.text = "População: " + populacao;
     }
 }
