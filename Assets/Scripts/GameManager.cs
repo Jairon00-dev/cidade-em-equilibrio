@@ -20,39 +20,97 @@ public class GameManager : MonoBehaviour
     }
 
     public void InvestirSaude()
+{
+    if (dinheiro >= 200)
     {
-        if (dinheiro >= 200)
-        {
-            dinheiro -= 200;
-            felicidade += 10;
-            InforText.text = "A saúde da cidade melhorou!";
-        }
+        dinheiro -= 200;
 
-        AtualizarUI();
+        felicidade += 10;
+
+        populacao += 20;
+
+        InforText.text = "A saúde da cidade melhorou!";
     }
+    else
+    {
+        felicidade -= 5;
+
+        populacao -= 10;
+
+        InforText.text = "Crise na saúde pública!";
+    }
+
+    VerificarLimites();
+
+    AtualizarUI();
+}
 
     public void InvestirEducacao()
+{
+    if (dinheiro >= 300)
     {
-        if (dinheiro >= 300)
-        {
-            dinheiro -= 300;
-            felicidade += 15;
-            InforText.text = "A educação da cidade evoluiu!";
-        }
+        dinheiro -= 300;
 
-        AtualizarUI();
+        felicidade += 15;
+
+        populacao += 30;
+
+        InforText.text = "A educação da cidade evoluiu!";
+    }
+    else
+    {
+        felicidade -= 7;
+
+        populacao -= 15;
+
+        InforText.text = "A educação entrou em crise!";
     }
 
+    VerificarLimites();
+
+    AtualizarUI();
+}
+
     public void InvestirSeguranca()
+{
+    if (dinheiro >= 250)
     {
-        if (dinheiro >= 250)
+        dinheiro -= 250;
+
+        felicidade += 12;
+
+        InforText.text = "A segurança aumentou!";
+    }
+    else
+    {
+        felicidade -= 10;
+
+        populacao -= 20;
+
+        InforText.text = "A violência aumentou!";
+    }
+
+    VerificarLimites();
+
+    AtualizarUI();
+}
+
+  void VerificarLimites()
+    {
+        if (felicidade > 100)
         {
-            dinheiro -= 250;
-            felicidade += 12;
-            InforText.text = "A segurança aumentou!";
+            felicidade = 100;
         }
 
-        AtualizarUI();
+        if (felicidade < 0)
+        {
+            felicidade = 0;
+        }
+
+        if (populacao < 0)
+        {
+            populacao = 0;
+        }
     }
 
     void AtualizarUI()
@@ -61,5 +119,8 @@ public class GameManager : MonoBehaviour
         HappyText.text = "Felicidade: " + felicidade + "%";
         PopulationText.text = "População: " + populacao;
         happyBar.value = felicidade;
+        
+    
     }
+
 }
