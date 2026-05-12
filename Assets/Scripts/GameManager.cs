@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public float felicidade = 50f;
     public int populacao = 1000;
      public Slider happyBar;
+     public GameObject gameOverPanel;
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI HappyText;
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     VerificarLimites();
 
+    VerificarGameOver();
+
     AtualizarUI();
 }
 
@@ -68,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     VerificarLimites();
 
+    VerificarGameOver();
+
     AtualizarUI();
 }
 
@@ -80,6 +86,8 @@ public void CobrarImpostos()
     InforText.text = "Os impostos foram arrecadados.";
 
     VerificarLimites();
+
+    VerificarGameOver();
 
     AtualizarUI();
 }
@@ -105,9 +113,20 @@ public void CobrarImpostos()
 
     VerificarLimites();
 
+    VerificarGameOver();
+
     AtualizarUI();
 }
 
+void VerificarGameOver()
+{
+    if (felicidade <= 0 || populacao <= 0)
+    {
+        gameOverPanel.SetActive(true);
+
+        Time.timeScale = 0;
+    }
+}
   void VerificarLimites()
     {
         if (felicidade > 100)
@@ -134,6 +153,14 @@ public void CobrarImpostos()
         happyBar.value = felicidade;
         
     
+    }
+
+
+     public void ReiniciarJogo()
+    {
+    Time.timeScale = 1;
+
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
