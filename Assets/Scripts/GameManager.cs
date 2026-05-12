@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public float dinheiro = 1000f;
     public float felicidade = 50f;
     public int populacao = 1000;
+     public Slider happyBar;
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI HappyText;
@@ -58,5 +60,6 @@ public class GameManager : MonoBehaviour
         moneyText.text = "Dinheiro: R$ " + dinheiro;
         HappyText.text = "Felicidade: " + felicidade + "%";
         PopulationText.text = "População: " + populacao;
+        happyBar.value = felicidade;
     }
 }
